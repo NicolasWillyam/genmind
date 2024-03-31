@@ -6,7 +6,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import ModalProvider from "@/providers/modal-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { BillingProvider } from "@/providers/billing-provider";
-
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const font = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,6 +28,8 @@ export default function RootLayout({
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       <html lang="en">
+        <Analytics />
+        <SpeedInsights />
         <body className={font.className}>
           <ThemeProvider
             attribute="class"
