@@ -1,60 +1,76 @@
-import { CardBody, CardContainer, CardItem } from '@/components/global/3d-card'
-import { HeroParallax } from '@/components/global/connect-parallax'
-import { ContainerScroll } from '@/components/global/container-scroll-animation'
-import { InfiniteMovingCards } from '@/components/global/infinite-moving-cards'
-import { LampComponent } from '@/components/global/lamp'
-import Navbar from '@/components/global/navbar'
-import { Button } from '@/components/ui/button'
-import { clients, products } from '@/lib/constant'
-import { CheckIcon } from 'lucide-react'
-import Image from 'next/image'
+import { HeroParallax } from "@/components/global/connect-parallax";
+import { CardBody, CardContainer, CardItem } from "@/components/global/3d-card";
+import { ContainerScroll } from "@/components/global/container-scroll-animation";
+import { InfiniteMovingCards } from "@/components/global/infinite-moving-cards";
+import Navbar from "@/components/global/navbar";
+import { Button } from "@/components/ui/button";
+import { clients, products } from "@/lib/constant";
+import { LampComponent } from "@/components/global/lamp";
+import Image from "next/image";
+import { CheckIcon } from "lucide-react";
+import Link from "next/link";
+// import Footer from "@/components/global/footer";
 
 export default function Home() {
-  //WIP: remove fault IMAge for home page
   return (
     <main className="flex items-center justify-center flex-col">
       <Navbar />
-      <section className="h-screen w-full  bg-neutral-950 rounded-md  !overflow-visible relative flex flex-col items-center  antialiased">
+      <section
+        id="home"
+        className="h-screen pt-32 w-full  bg-neutral-950 rounded-md  !overflow-visible relative flex flex-col items-center  antialiased"
+      >
         <div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_35%,#223_100%)]"></div>
         <div className="flex flex-col mt-[-100px] md:mt-[-50px]">
           <ContainerScroll
             titleComponent={
               <div className="flex items-center flex-col">
-                <Button
-                  size={'lg'}
-                  className="p-8 mb-8 md:mb-0 text-2xl w-full sm:w-fit border-t-2 rounded-full border-[#4D4D4D] bg-[#1F1F1F] hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500"
+                <p className="text-4xl pb-2 md:text-[80px] md:leading-[96px] bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
+                  Ai cũng có thể vẽ sơ đồ <br /> tư duy dễ dàng với AI
+                </p>
+                <Link
+                  href="/"
+                  className="relative mb-12 mt-12 inline-flex  overflow-hidden rounded-full p-[3px] outline-none"
+                >
+                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 p-6 py-3 text-xl font-medium text-white backdrop-blur-3xl ">
+                    Trải Nghiệm Miễn Phí
+                  </span>
+                </Link>
+                {/* <Button
+                  size={"lg"}
+                  className="p-8 mb-8 my-8 md:mb-0 text-2xl w-full sm:w-fit border-t-2 rounded-full border-[#4D4D4D] bg-[#1F1F1F] hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500"
                 >
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-500 to-neutral-600  md:text-center font-sans group-hover:bg-gradient-to-r group-hover:from-black goup-hover:to-black">
                     Start For Free Today
                   </span>
-                </Button>
-                <h1 className="text-5xl md:text-8xl  bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
-                  Automate Your Work With Fuzzie
-                </h1>
+                </Button> */}
               </div>
             }
           />
         </div>
       </section>
       <InfiniteMovingCards
-        className="md:mt-[18rem] mt-[-100px]"
+        className="md:mt-[36rem] mt-[-100px]"
         items={clients}
         direction="right"
         speed="slow"
       />
-      <section>
+
+      <section id="product" className="w-screen">
         <HeroParallax products={products}></HeroParallax>
       </section>
-      <section className="mt-[-500px]">
+
+      <section id="pricing" className="mb-20">
         <LampComponent />
-        <div className="flex flex-wrap items-center justify-center flex-col md:flex-row gap-8 -mt-72">
-          <CardContainer className="inter-var ">
-            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border">
+        <div className="flex flex-wrap items-center justify-center flex-col md:flex-row gap-8 -mt-[300px]">
+          <CardContainer>
+            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border-2">
               <CardItem
                 translateZ="50"
                 className="text-xl font-bold text-neutral-600 dark:text-white "
               >
-                Hobby
+                <p className="mb-2">Hobby</p>
+
                 <h2 className="text-6xl ">$0</h2>
               </CardItem>
               <CardItem
@@ -96,13 +112,14 @@ export default function Home() {
             </CardBody>
           </CardContainer>
           <CardContainer className="inter-var ">
-            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-[#E2CBFF] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border">
+            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-[#E2CBFF] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border-2">
               <CardItem
                 translateZ="50"
                 className="text-xl font-bold text-neutral-600 dark:text-white "
               >
-                Pro Plan
-                <h2 className="text-6xl ">$29</h2>
+                <p className="mb-2">Pro Plan</p>
+
+                <h2 className="text-6xl ">$0.99</h2>
               </CardItem>
               <CardItem
                 translateZ="60"
@@ -143,13 +160,13 @@ export default function Home() {
             </CardBody>
           </CardContainer>
           <CardContainer className="inter-var ">
-            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border">
+            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border-2">
               <CardItem
                 translateZ="50"
                 className="text-xl font-bold text-neutral-600 dark:text-white "
               >
-                Unlimited
-                <h2 className="text-6xl ">$99</h2>
+                <p className="mb-2">Unlimited</p>
+                <h2 className="text-6xl ">$1.99</h2>
               </CardItem>
               <CardItem
                 translateZ="60"
@@ -191,6 +208,7 @@ export default function Home() {
           </CardContainer>
         </div>
       </section>
+      {/* <Footer /> */}
     </main>
-  )
+  );
 }
